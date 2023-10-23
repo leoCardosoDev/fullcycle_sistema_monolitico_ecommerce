@@ -40,5 +40,24 @@ describe('Product Repository test', () => {
     expect(productProps.purchasePrice).toEqual(productDb.dataValues.purchasePrice)
     expect(productProps.stock).toEqual(productDb.dataValues.stock)
   })
+
+  test('Should find a product', async () => {
+    const productRepository = new ProductRepository()
+    ProductModel.create({
+      id: '1',
+      name: 'Find Product 1',
+      description: 'Find Product',
+      purchasePrice: 100,
+      stock: 10,
+      createdAt: new Date(),
+      updatedAt: new Date()
+    })
+    const product = await productRepository.find('1')
+    expect(product.id.id).toEqual('1')
+    expect(product.name).toEqual('Find Product 1')
+    expect(product.description).toEqual('Find Product')
+    expect(product.purchasePrice).toEqual(100)
+    expect(product.stock).toEqual(10)
+  })
 })
 

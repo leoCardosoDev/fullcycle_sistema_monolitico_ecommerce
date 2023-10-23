@@ -9,6 +9,6 @@ export default class Id implements ValueObject {
   }
 
   get id(): string {
-    return this.id
+    return this._id
   }
 }

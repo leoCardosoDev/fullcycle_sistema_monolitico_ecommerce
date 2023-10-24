@@ -1,4 +1,3 @@
-import Id from "../../../@shared/domain/value_object/id_value_object";
 import UseCaseInterface from "../../../@shared/usecase/use_case_interface";
 import ProductGateway from "../../gateway/product_gateway";
 import { FindProductInputDto, FindProductOutputDto } from "./find_product_dto";

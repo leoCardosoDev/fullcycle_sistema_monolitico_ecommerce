@@ -6,24 +6,38 @@ import { Column, Model, PrimaryKey, Table } from "sequelize-typescript";
 })
 export class ProductModel extends Model {
   @PrimaryKey
-  @Column({ allowNull: false})
-  id: string
+  @Column({
+    field: 'id',
+  })
+  public id!: string;
 
-  @Column({ allowNull: false})
-  name:string
+  @Column({
+    field: 'name',
+  })
+  public name!: string;
 
-  @Column({ allowNull: false})
-  description: string
+  @Column({
+    field: 'description',
+  })
+  public description!: string;
 
-  @Column({ allowNull: false})
-  purchasePrice: number
+  @Column({
+    field: 'purchasePrice',
+  })
+  public purchasePrice!: number;
 
-  @Column({ allowNull: false})
-  stock: number
+  @Column({
+    field: 'stock',
+  })
+  public stock!: number;
 
-  @Column({ allowNull: false})
-  createdAt: Date
-  
-  @Column({ allowNull: false})
-  updatedAt: Date
+  @Column({
+    field: 'createdAt',
+  })
+  public createdAt!: Date;
+
+  @Column({
+    field: 'updatedAt',
+  })
+  public updatedAt!: Date;
 }

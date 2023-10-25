@@ -7,21 +7,33 @@ import { Column, Model, PrimaryKey, Table } from 'sequelize-typescript'
 
 export class ClientModel extends Model {
   @PrimaryKey
-  @Column({ allowNull: false })
-  id: string
+  @Column({
+    field: 'id',
+  })
+  public id!: string;
 
-  @Column({ allowNull: false })
-  name: string
+  @Column({
+    field: 'name',
+  })
+  public name!: string;
 
-  @Column({ allowNull: false })
-  email: string
+  @Column({
+    field: 'email',
+  })
+  public email!: string;
 
-  @Column({ allowNull: false })
-  address: string
+  @Column({
+    field: 'address',
+  })
+  public address!: string;
 
-  @Column({ allowNull: false })
-  createdAt: Date
+  @Column({
+    field: 'createdAt',
+  })
+  public createdAt!: Date;
 
-  @Column({ allowNull: false })
-  updatedAt: Date
+  @Column({
+    field: 'updatedAt',
+  })
+  public updatedAt!: Date;
 }

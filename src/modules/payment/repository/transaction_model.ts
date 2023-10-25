@@ -1,11 +1,10 @@
 import { Column, Model, PrimaryKey, Table } from 'sequelize-typescript'
 
 @Table({
-  tableName: 'clients',
-  timestamps: false,
+  tableName: 'transactions',
+  timestamps: false
 })
-
-export class ClientModel extends Model {
+export default class TransactionModel extends Model {
   @PrimaryKey
   @Column({
     field: 'id',
@@ -13,19 +12,19 @@ export class ClientModel extends Model {
   public id!: string;
 
   @Column({
-    field: 'name',
+    field: 'orderId',
   })
-  public name!: string;
+  public orderId!: string;
 
   @Column({
-    field: 'email',
+    field: 'amount',
   })
-  public email!: string;
+  public amount!: number;
 
   @Column({
-    field: 'address',
+    field: 'status',
   })
-  public address!: string;
+  public status!: string;
 
   @Column({
     field: 'createdAt',

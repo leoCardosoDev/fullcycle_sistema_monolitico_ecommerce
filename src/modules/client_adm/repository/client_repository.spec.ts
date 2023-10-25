@@ -11,7 +11,6 @@ describe('Client Repository test', () => {
     sequelize = new Sequelize({
       dialect: 'sqlite',
       storage: ':memory',
-      logging: false,
       sync: { force: true }
     })
     sequelize.addModels([ClientModel])

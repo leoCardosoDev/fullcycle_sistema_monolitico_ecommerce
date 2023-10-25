@@ -28,7 +28,7 @@ export default class Client extends BaseEntity implements AggregateRoot {
 }
 
 type ClientProps = {
-  id: Id,
+  id?: Id,
   name: string,
   email: string,
   address: string

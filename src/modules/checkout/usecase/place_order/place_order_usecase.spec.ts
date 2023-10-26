@@ -1,5 +1,9 @@
+import Id from '../../../@shared/domain/value_object/id_value_object'
+import Product from '../../domain/product_entity'
 import { PlaceOrderInputDto } from './place_order_dto'
 import PlaceOrderUseCase from './place_order_usecase'
+
+const mockDate = new Date(2000, 1, 1)
 
 describe('PlaceOrderUseCase test', () => {
   describe('Validate Products Methods', () => {
@@ -42,6 +46,51 @@ describe('PlaceOrderUseCase test', () => {
       await expect(placeOrderUseCase['validateProducts'](input)).rejects.toThrow(new Error('Product 1 is not available in stock'))
       expect(mockProductFacade.checkStock).toHaveBeenCalledTimes(7)
     })
+  })
+
+  describe('Get Products method', () => {
+    beforeAll(() => {
+      jest.useFakeTimers('modern')
+      jest.setSystemTime(mockDate)
+    })
+
+    afterAll(() => {
+      jest.useRealTimers()
+    })
+
+    //@ts-expect-error - no params in constructor
+    const placeOrderUseCase = new PlaceOrderUseCase()
+    test('Should throw an error when product not found', async () => {
+      const mockCatalogFacade = {
+        find: jest.fn().mockResolvedValue(null)
+      }
+      //@ts-expect-error - force set catalogFacade
+      placeOrderUseCase['_catalogFacade'] = mockCatalogFacade
+      await expect(placeOrderUseCase['getProduct']('0')).rejects.toThrow(new Error('Product not found'))
+    })
+
+    test('Should return a product', async () => {
+      const mockCatalogFacade = {
+        find: jest.fn().mockResolvedValue({
+          id: '0',
+          name: 'Product 0',
+          description: 'Product 0 description',
+          salesPrice: 0
+        })
+      }
+      //@ts-expect-error - force set catalogFacade
+      placeOrderUseCase['_catalogFacade'] = mockCatalogFacade
+      await expect(placeOrderUseCase['getProduct']('0')).resolves.toEqual(
+        new Product({
+          id: new Id('0'),
+          name: 'Product 0',
+          description: 'Product 0 description',
+          salesPrice: 0
+        })
+      )
+      expect(mockCatalogFacade.find).toHaveBeenCalledTimes(1)
+    })
+
   })
 
   describe('Execute method', () => {

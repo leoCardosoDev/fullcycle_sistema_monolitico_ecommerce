@@ -1,3 +1,5 @@
+import { Address } from "../../@shared/domain/value_object/address_value_object"
+
 export default interface ClientAdmFacadeInterface {
   add(input: AddClientFacadeInputDto): Promise<void>
   find(input: FindClientFacadeInputDto): Promise<FindClientFacadeOutputDto>
@@ -6,8 +8,9 @@ export default interface ClientAdmFacadeInterface {
 export interface AddClientFacadeInputDto {
   id?: string,
   name: string,
+  document: string,
   email: string
-  address: string
+  address: Address
 }
 
 export interface FindClientFacadeInputDto {
@@ -17,8 +20,9 @@ export interface FindClientFacadeInputDto {
 export interface FindClientFacadeOutputDto {
   id?: string
   name: string
+  document: string
   email: string
-  address: string
+  address: Address
   createdAt: Date
   updatedAt: Date
 }
